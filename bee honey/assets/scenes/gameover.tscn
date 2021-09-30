@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/fonts/HindSiliguri-Bold.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+outline_size = 7
+font_data = ExtResource( 1 )
+
+[node name="gameover" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+margin_left = 114.0
+margin_top = 518.685
+margin_right = 619.0
+margin_bottom = 704.685
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.94902, 0.0588235, 0.0588235, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Game Over"
+__meta__ = {
+"_edit_use_anchors_": false
+}

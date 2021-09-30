@@ -1,0 +1,108 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/scenes/bee.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/scenes/background.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/objetos/pg/bgsup.png" type="Texture" id=3]
+[ext_resource path="res://assets/scenes/scripts/map.gd" type="Script" id=4]
+[ext_resource path="res://assets/objetos/bee/0001.png" type="Texture" id=5]
+[ext_resource path="res://assets/objetos/flower/0000.png" type="Texture" id=6]
+[ext_resource path="res://assets/fonts/HindSiliguri-Bold.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://assets/scenes/gameover.tscn" type="PackedScene" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 7 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="background" parent="." instance=ExtResource( 2 )]
+
+[node name="bee" parent="." instance=ExtResource( 1 )]
+position = Vector2( 521.048, 1108.77 )
+
+[node name="timerSpider" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="timerFlower" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="spawn" type="Node" parent="."]
+
+[node name="bar" type="Node" parent="."]
+
+[node name="top" type="Sprite" parent="bar"]
+position = Vector2( 359.763, 103.109 )
+scale = Vector2( 1.04487, 1.07485 )
+texture = ExtResource( 3 )
+
+[node name="1" type="Sprite" parent="bar"]
+position = Vector2( 68.1072, 106.403 )
+scale = Vector2( 0.564326, 0.701005 )
+texture = ExtResource( 5 )
+
+[node name="2" type="Sprite" parent="bar"]
+position = Vector2( 164.885, 104.403 )
+scale = Vector2( 0.564326, 0.681005 )
+texture = ExtResource( 5 )
+
+[node name="3" type="Sprite" parent="bar"]
+position = Vector2( 261.664, 102.403 )
+scale = Vector2( 0.564326, 0.681005 )
+texture = ExtResource( 5 )
+
+[node name="flower" type="Sprite" parent="bar"]
+position = Vector2( 421.885, 69.0682 )
+scale = Vector2( 0.410978, 0.367567 )
+texture = ExtResource( 6 )
+
+[node name="text" type="Label" parent="bar"]
+margin_left = 468.0
+margin_top = 48.0
+margin_right = 708.0
+margin_bottom = 127.0
+custom_fonts/font = SubResource( 1 )
+text = "000000"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="score" type="Label" parent="bar"]
+margin_left = 532.0
+margin_top = -8.0
+margin_right = 704.0
+margin_bottom = 71.0
+custom_fonts/font = SubResource( 1 )
+text = "Score"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="life" type="Label" parent="bar"]
+margin_left = -72.0
+margin_top = 2.0
+margin_right = 100.0
+margin_bottom = 81.0
+custom_fonts/font = SubResource( 1 )
+text = "Life"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="restart" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="gameover" parent="." instance=ExtResource( 8 )]
+
+[connection signal="timeout" from="timerSpider" to="." method="_on_timerSpider_timeout"]
+[connection signal="timeout" from="timerFlower" to="." method="_on_timerFlower_timeout"]
+[connection signal="timeout" from="restart" to="." method="_on_restart_timeout"]

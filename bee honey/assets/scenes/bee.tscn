@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/objetos/bee/0004.png" type="Texture" id=1]
+[ext_resource path="res://assets/objetos/bee/0003.png" type="Texture" id=2]
+[ext_resource path="res://assets/objetos/bee/0001.png" type="Texture" id=3]
+[ext_resource path="res://assets/objetos/bee/0002.png" type="Texture" id=4]
+[ext_resource path="res://assets/scenes/scripts/bee.gd" type="Script" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 29.893
+height = 28.6045
+
+[node name="bee" type="Node2D"]
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="animateBee" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+frame = 2
+playing = true
+
+[node name="areaBee" type="Area2D" parent="."]
+
+[node name="collision" type="CollisionShape2D" parent="areaBee"]
+shape = SubResource( 2 )
+
+[connection signal="area_entered" from="areaBee" to="." method="_on_areaBee_area_entered"]
